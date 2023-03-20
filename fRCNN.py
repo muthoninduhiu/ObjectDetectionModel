@@ -1,50 +1,43 @@
 import torch
 import torchvision
-import torchvision.transforms as T
-import matplotlib.pyplot as plt
-from PIL import Image
+import cv2
 
-# Define the labels for the objects we want to detect
-labels = ['phone', 'laptop', 'satellite dish', 'USB stick', 'keyboard',
-          'router', 'keys', 'magnifying glass', 'server rack', 'mouse']
+# Define the classes to detect
+classes = ['person', 'car', 'dog']
 
-# Load the pre-trained Faster R-CNN model from torchvision
+# Load the Fast R-CNN model
 model = torchvision.models.detection.fasterrcnn_resnet50_fpn(pretrained=True)
 
 # Set the model to evaluation mode
 model.eval()
 
-# Define the transformations to be applied to the image
-transform = T.Compose([
-    T.Resize((800, 800)),
-    T.ToTensor(),
-    T.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
-])
-
-# Define the image to be processed
+# Define the image path
 image_path = 'images/test.jpg'
-image = Image.open(image_path).convert('RGB')
 
-# Apply the transformations to the image and add a batch dimension
-image_tensor = transform(image).unsqueeze(0)
+# Load the image
+img = cv2.imread(image_path)
 
-# Pass the image tensor through the model's forward() method
-with torch.no_grad():
-    predictions = model(image_tensor)
+# Convert the image to RGB format
+img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 
-# Extract the predicted bounding boxes, labels, and scores
-boxes = predictions[0]['boxes'].cpu().numpy()
-labels = predictions[0]['labels'].cpu().numpy()
-scores = predictions[0]['scores'].cpu().numpy()
+# Preprocess the image
+transform = torchvision.transforms.ToTensor()
+img = transform(img)
 
-# Create a list to store the detected objects
-detected_objects = []
+# Pass the image through the model to get the predicted bounding boxes, labels, and scores
+outputs = model([img])
 
-# Loop through the predicted boxes and append the label of each detected object to the list
-for i in range(len(boxes)):
-    if scores[i] > 0.5:  # Only consider boxes with confidence score > 0.5
-        label = labels[i]
-        detected_objects.append(labels[label - 1])  # Subtract 1 from the label to match the index of the labels list
+# Display the image with the predicted bounding boxes
+boxes = outputs[0]['boxes'].detach().cpu().numpy()
+labels = outputs[0]['labels'].detach().cpu().numpy()
+scores = outputs[0]['scores'].detach().cpu().numpy()
 
-# Print the list of detected objects
-print(detected_objects)
+for box, label, score in zip(boxes, labels, scores):
+    if score > 0.5 and classes[label-1] in classes:
+        x1, y1, x2, y2 = map(int, box)
+        cv2.rectangle(img, (x1, y1), (x2, y2), (0, 255, 0), 2)
+        cv2.putText(img, f'{classes[label-1]} {score:.2f}', (x1, y1-10), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
+
+cv2.imshow('Image', img.permute(1, 2, 0).numpy())
+cv2.waitKey(0)
+cv2.destroyAllWindows()
