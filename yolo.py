@@ -1,6 +1,5 @@
 import cv2
 import torch
-import torchvision
 
 # Define the classes to detect
 classes = ['phone', 'laptop', 'satellite dish', 'USB stick', 'keyboard',
@@ -9,14 +8,12 @@ classes = ['phone', 'laptop', 'satellite dish', 'USB stick', 'keyboard',
 # Load the YOLOv5 model
 # model = torch.hub.load('ultralytics/yolov5', 'yolov5s', pretrained=True)
 model = torch.hub.load('ultralytics/yolov5', 'yolov5x', pretrained=True)
-# faster r cnn pretrained model
-# model = torchvision.models.detection.fasterrcnn_resnet50_fpn(pretrained=True)
 
 # Set the model to evaluation mode
 model.eval()
 
 # Define the image path
-image_path = 'images/mice.jpg'
+image_path = 'images/test.jpg'
 
 # Load the image
 img = cv2.imread(image_path)
