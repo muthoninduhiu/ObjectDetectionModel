@@ -35,4 +35,3 @@ counts = df['name'].value_counts()
 
 # Print the counts
 print(counts)
-
