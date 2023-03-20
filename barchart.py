@@ -1,6 +1,6 @@
 from matplotlib import pyplot as plt
 
-from maybeFinal import decoded_predictions, image
+from resnet50 import decoded_predictions, image
 
 # Create a horizontal bar chart
 fig, ax = plt.subplots(figsize=(10, 6))
