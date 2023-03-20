@@ -3,7 +3,7 @@ import torch
 
 # Define the classes to detect
 classes = ['phone', 'laptop', 'satellite dish', 'USB stick', 'keyboard',
-           'router', 'keys', 'magnifying glass', 'server rack', 'mouse', "apple"]
+           'router', 'keys', 'magnifying glass', 'server rack', 'mouse']
 
 # Load the YOLOv5 model
 # model = torch.hub.load('ultralytics/yolov5', 'yolov5s', pretrained=True)
@@ -13,12 +13,12 @@ model = torch.hub.load('ultralytics/yolov5', 'yolov5x', pretrained=True)
 model.eval()
 
 # Define the image path
-image_path = 'images/mice.jpg'
+image_path = 'images/test.jpg'
 
 # Load the image
 img = cv2.imread(image_path)
 # Resize the image
-img = cv2.resize(img, (640, 640))
+img = cv2.resize(img, (680, 600))
 # print(img.shape)
 # Detect objects in the image
 results = model(img)

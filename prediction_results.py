@@ -17,6 +17,4 @@ for i in range(len(results.xyxy[0])):
         'bbox': (x1, y1, x2, y2)
     })
 
-# Print the object detection results
-for detection in detections:
-    print(f"Label: {detection['label']}, Score: {detection['score']:.2f}")
+
