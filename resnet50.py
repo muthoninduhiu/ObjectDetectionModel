@@ -1,15 +1,10 @@
-
-from sklearn.metrics import precision_recall_curve, average_precision_score
-import cv2
 import numpy as np
-from tensorflow.keras.utils import img_to_array
+from PIL import Image
 from tensorflow.keras.applications.resnet50 import ResNet50, preprocess_input, decode_predictions
-from PIL import Image, ImageDraw, ImageFont
-from tensorflow.keras import models
-from tensorflow.keras import layers
+from tensorflow.keras.utils import img_to_array
 
 # Define the filename of the image to load
-filename = 'images/test.jpg'
+filename = 'images/test1.jpg'
 
 
 # Load the ResNet50 model

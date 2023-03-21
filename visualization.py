@@ -1,5 +1,4 @@
 import cv2
-
 from prediction_results import detections
 from yolo import results, img
 
@@ -21,7 +20,7 @@ for i in range(len(results.xyxy[0])):
                 labels = detection['label'].split(',')
                 y_offset = 20
                 for label in labels:
-                    cv2.putText(img, label.strip(), (x1, y1 - y_offset), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 0, 66), 2)
+                    cv2.putText(img, label.strip(), (x1, y1 - y_offset), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (1, 10, 255), 2)
                     y_offset += 20
 
 # Print the object detection results
