@@ -23,6 +23,9 @@ def main():
     # Resize image
     img = resize_image(img, target_size)
 
+    # detect objects
+    results = detect_objects(img, model)
+    print(results)
     
 if __name__ == '__main__':
     main()
