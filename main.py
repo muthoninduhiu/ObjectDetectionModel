@@ -10,6 +10,19 @@ def main():
                'router', 'house keys', 'magnifying glass', 'server rack', 'mouse']
     model = load_model('yolov5x')
 
-   
+    # Define the image path
+    image_path = 'images/several.jpg'
+
+    # define resizing image size comment this when using test1.jpg
+    # as we don't want to resize it for better results
+    target_size = (640, 640)
+
+    # Load the image
+    img = cv2.imread(image_path)
+
+    # Resize image
+    img = resize_image(img, target_size)
+
+    
 if __name__ == '__main__':
     main()
