@@ -49,11 +49,11 @@ To load the YOLOv5x model in Python, you can use the torch.hub module:
 
 We start with a pre-trained model and fine-tune it on your own dataset.
 
-*We set the model to evaluation mode so we can use it with our input image:
+* We set the model to evaluation mode so we can use it with our input image:
   - model.eval()
 * get the image file path
 * preproccess the image
-* use this to find the objects detected on the image 
+* use this to find the objects detected on the image :
   - results = model(img)
   
 ## Visualize Predictions:
