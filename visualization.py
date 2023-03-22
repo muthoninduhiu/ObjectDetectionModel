@@ -25,7 +25,7 @@ for i in range(len(results.xyxy[0])):
 
 # Print the object detection results
 for detection in detections:
-    print(f"Label: {detection['label']}, Score: {detection['score']:.2f}, Boxes: {detection['bbox']}")
+    print(f"Label: {detection['label']}, Score: {detection['score']:.2f}")
 
 cv2.imshow('Image', img)
 cv2.waitKey(0)

@@ -13,7 +13,7 @@ model = torch.hub.load('ultralytics/yolov5', 'yolov5x', pretrained=True)
 model.eval()
 
 # Define the image path
-image_path = 'images/test1.jpg'
+image_path = 'images/several.jpg'
 # target_size = (640, 640)
 # Load the image
 img = cv2.imread(image_path)
@@ -26,7 +26,7 @@ img = cv2.imread(image_path)
 # Detect objects in the image
 results = model(img)
 
-print("Results:{}".format(results))
+# print("Results:{}".format(results))
 # Create a DataFrame from the results
 df = results.pandas().xyxy[0]
 
