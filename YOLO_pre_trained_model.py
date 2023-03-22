@@ -2,20 +2,19 @@ import cv2
 import torch
 
 
-# Load the YOLOv5 model this is the smaller version with 213 layers
-# model = torch.hub.load('ultralytics/yolov5', 'yolov5s', pretrained=True)
-# Load the YOLOv5 model
-# Download and load the YOLOv5 model from Ultralytics
-# 'yolov5x' is the model architecture to use, and 'pretrained=True' means to download the pre-trained weights
-
 def load_model(model_architecture):
     """
     Resizes image to required target size
     Parameters:
-       model_architecture: takes the name of the architecture we use
+       model_architecture: takes the name of the architecture we use e.g 'yolov5s' but we use 'yolov5x'
+       # 'yolov5s' model has with 213 layers and 'yolov5x has 444 layers
     Returns:
       pre-trained model we use in evaluation mode
     """
+    # Load the YOLOv5 model
+    # Download and load the YOLOv5 model from Ultralytics
+    # 'yolov5x' is the model architecture to use, and 'pretrained=True'
+    # means to download the pre-trained weights
     model = torch.hub.load('ultralytics/yolov5', model_architecture, pretrained=True)
     # Set the model to evaluation mode, so it doesn't train while detecting objects in the image
     model.eval()
