@@ -39,6 +39,9 @@ def main():
     # print out detections
     for detection in detections:
         print(f"Label: {detection['label']}, Score: {detection['score']:.2f}")
-   
+    # visualize the predictions
+    visualize(results, img, detections)
+
+
 if __name__ == '__main__':
     main()
