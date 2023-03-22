@@ -33,6 +33,12 @@ def main():
     counts = count_objects(df)
     print(counts)
     # print predictions
-    
+
+    # define empty list
+    detections = extract_predictions(results)
+    # print out detections
+    for detection in detections:
+        print(f"Label: {detection['label']}, Score: {detection['score']:.2f}")
+   
 if __name__ == '__main__':
     main()
