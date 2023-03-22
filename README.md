@@ -27,8 +27,6 @@ To use YOLOv5x, you will need to have Python 3.8 or later installed, as well as 
 
 * OpenCV
 
-* NumPy
-
 * Pandas
 
 You can install these dependencies using pip:
