@@ -2,6 +2,19 @@ import cv2
 
 
 def visualize(results, img, detections):
+    """
+        Loads the results and displays an image with bounded boxes with a score of 0.4 and above
+        using the predictions to display the labels separately for each object
+
+        Parameters:
+        results: results obtained from the object detection model
+        img: the image to perform object detection on
+        detections: the detected objects in an image
+
+        Returns:
+        None
+        """
+
     # Iterate over the results object and display the image with bounding boxes around each detected object
     for i in range(len(results.xyxy[0])):
         bbox = results.xyxy[0][i]

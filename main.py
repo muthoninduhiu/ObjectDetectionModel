@@ -5,6 +5,19 @@ from YOLO_pre_trained_model import load_model, resize_image, detect_objects, fil
 
 
 def main():
+    """
+        Loads an image and performs object detection using a pre-trained YOLOv5 model.
+        Filters the detected objects based on a pre-defined list of classes.
+        Counts the number of objects of each class.
+        Displays the object detection results.
+        Displays predictions on the image.
+
+        Parameters:
+        None
+
+        Returns:
+        None
+        """
     # Define the classes to detect
     classes = ['cell phone', 'laptop', 'satellite dish', 'USB stick', 'keyboard',
                'router', 'house keys', 'magnifying glass', 'server rack', 'mouse']
@@ -43,5 +56,6 @@ def main():
     visualize(results, img, detections)
 
 
+# call the main method
 if __name__ == '__main__':
     main()

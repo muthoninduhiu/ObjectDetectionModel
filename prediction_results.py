@@ -1,4 +1,14 @@
 def extract_predictions(results):
+    """
+        Extracts object detection predictions from the results object and returns them in a list.
+
+        Parameters:
+        results:  The results obtained after object detection.
+
+        Returns:
+        detections (list): A list of dictionaries, where each dictionary
+        contains the label, score, and bounding box coordinates of an object detected in the image.
+        """
     # create a list to store the predictions made on the image
     detections = []
 
