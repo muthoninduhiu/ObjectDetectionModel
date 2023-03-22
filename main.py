@@ -8,7 +8,8 @@ def main():
     # Define the classes to detect
     classes = ['cell phone', 'laptop', 'satellite dish', 'USB stick', 'keyboard',
                'router', 'house keys', 'magnifying glass', 'server rack', 'mouse']
-   
+    model = load_model('yolov5x')
 
+   
 if __name__ == '__main__':
     main()
