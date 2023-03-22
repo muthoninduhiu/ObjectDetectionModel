@@ -26,6 +26,13 @@ def main():
     # detect objects
     results = detect_objects(img, model)
     print(results)
+
+    # filter detected objects
+    df = filter_results(results, classes)
+    # count objects
+    counts = count_objects(df)
+    print(counts)
+    # print predictions
     
 if __name__ == '__main__':
     main()
