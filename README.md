@@ -1,4 +1,4 @@
-# Object Detection nModel using yoloV5x
+# Object Detection Model using yoloV5x
 In this project, we will use YOLOv5x (You Only Look Once version 5 extra-large) to detect objects in images.
 
 ## YOLOv5x
