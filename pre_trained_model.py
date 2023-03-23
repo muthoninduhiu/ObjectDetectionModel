@@ -1,3 +1,5 @@
+from pprint import pprint
+
 import cv2
 import torch
 
@@ -18,6 +20,8 @@ def load_model(model_architecture):
     model = torch.hub.load('ultralytics/yolov5', model_architecture, pretrained=True)
     # Set the model to evaluation mode, so it doesn't train while detecting objects in the image
     model.eval()
+    labels = model.names
+    pprint(labels)
     return model
 
 
@@ -30,10 +34,25 @@ def resize_image(img, target_size):
              target_size: size model works with to detect objects e.g 640x640 for YOLOv5.
 
         Returns:
-             an image that has been resized
+             an image that has been resized maintaining its aspect ratio
     """
-    # Resize the image
-    return cv2.resize(img, target_size, interpolation=cv2.INTER_LINEAR)
+    # Get the current width and height of the image
+    height, width = img.shape[:2]
+
+    # Calculate the aspect ratio of the original image
+    aspect_ratio = float(width) / height
+
+    # Calculate the new width and height of the resized image while preserving aspect ratio
+    target_width, target_height = target_size
+    if (target_width / target_height) > aspect_ratio:
+        new_width = int(target_height * aspect_ratio)
+        new_height = target_height
+    else:
+        new_width = target_width
+        new_height = int(target_width / aspect_ratio)
+
+    # Resize the image using the calculated new width and height
+    return cv2.resize(img, (new_width, new_height), interpolation=cv2.INTER_LINEAR)
 
 
 def detect_objects(img, model):
