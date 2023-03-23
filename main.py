@@ -23,9 +23,7 @@ def main():
     classes = ['cell phone', 'laptop', 'satellite dish', 'USB stick', 'keyboard',
                'router', 'house keys', 'magnifying glass', 'server rack', 'mouse']
     model = load_model('yolov5x')
-
     # Define the image path
-    # Use a list of images instead
     folder_path = 'images/'
 
     # define resizing image size

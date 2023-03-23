@@ -18,7 +18,7 @@ def load_model(model_architecture):
     # 'yolov5x' is the model architecture to use, and 'pretrained=True'
     # means to download the pre-trained weights
     model = torch.hub.load('ultralytics/yolov5', model_architecture, pretrained=True)
-    # Set the model to evaluation mode, so it doesn't train while detecting objects in the image
+    # Set the model to evaluation mode, so it doesn't train while detecting objects in the imageoo
     model.eval()
     labels = model.names
     pprint(labels)
