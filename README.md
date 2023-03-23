@@ -63,13 +63,22 @@ We start with a pre-trained model and fine-tune it on your own dataset.
 YOLOv5x is a powerful object detection model that can be used to detect objects in images with high accuracy. By following the steps outlined in this tutorial, you can get started with using YOLOv5x for your own object detection tasks.
 
 ## Project Structure
-objectDetectionModel/
-    ├── README.md
-    ├── images/
-    │   ├── image1.jpg
-    │   ├── image2.jpg
-    │   └── ...
-    ├── prediction_results.py
-    ├── visualization.py
-    ├── pre_trained_model.py
-    └── main.py
+project-name/
+
+    ├── README.md
+
+    ├── images/
+
+    │   ├── image1.jpg
+
+    │   ├── image2.jpg
+
+    │   └── ...
+
+    ├── prediction_results.py
+
+    ├── visualization.py
+
+    ├── pre_trained_model.py
+
+    └── main.py
