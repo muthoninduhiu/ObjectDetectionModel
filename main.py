@@ -1,3 +1,4 @@
+import os
 import cv2
 from prediction_results import extract_predictions
 from visualization import visualize
@@ -24,36 +25,39 @@ def main():
     model = load_model('yolov5x')
 
     # Define the image path
-    image_path = 'images/several.jpg'
+    # Use a list of images instead
+    folder_path = 'images/'
 
-    # define resizing image size comment this when using test1.jpg
-    # as we don't want to resize it for better results
+    # define resizing image size
     target_size = (640, 640)
+    # Loop through all the images in the folder
+    for filename in os.listdir(folder_path):
+        # Check if the file is an image file
+        if filename.endswith(".jpg") or filename.endswith(".jpeg") or filename.endswith(".png"):
+            # Load the image
+            image_path = os.path.join(folder_path, filename)
+            img = cv2.imread(image_path)
+            # Resize image
+            img = resize_image(img, target_size)
 
-    # Load the image
-    img = cv2.imread(image_path)
+            # detect objects
+            results = detect_objects(img, model)
+            print(results)
 
-    # Resize image
-    img = resize_image(img, target_size)
+            # filter detected objects
+            df = filter_results(results, classes)
+            # count objects
+            counts = count_objects(df)
+            print(counts)
+            # print predictions
 
-    # detect objects
-    results = detect_objects(img, model)
-    print(results)
-
-    # filter detected objects
-    df = filter_results(results, classes)
-    # count objects
-    counts = count_objects(df)
-    print(counts)
-    # print predictions
-
-    # define empty list
-    detections = extract_predictions(results)
-    # print out detections
-    for detection in detections:
-        print(f"Label: {detection['label']}, Score: {detection['score']:.2f}")
-    # visualize the predictions
-    visualize(results, img, detections)
+            # define empty list
+            detections = extract_predictions(results)
+            # print out detections
+            for detection in detections:
+                print(f"Label: {detection['label']}, Score: {detection['score']:.2f}")
+            # visualize the predictions
+            visualize(results, img, detections)
 
 
 # call the main method
