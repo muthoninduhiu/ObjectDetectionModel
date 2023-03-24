@@ -1,10 +1,23 @@
 import subprocess
 
-from custom_model import detect_custom_objects
-
-
 def train_yolov5(data, cfg_path, pretrained_weights, num_epochs, batch_size, img_size, model_name, save_dir):
     # Define the YOLOv5 training command as a list of strings
+    """
+      Train a custom YOLOv5 object detection model with a new class and saves the model.
+
+      Args:
+          data (str): Path to the YAML file that defines the dataset.
+          cfg_path (str): Path to the YAML file that defines the YOLOv5 model architecture.
+          pretrained_weights (str): Path to the pre-trained YOLOv5 weights.
+          num_epochs (int): Number of epochs to train the model for.
+          batch_size (int): Batch size to use during training.
+          img_size (int): Input image size for the model.
+          model_name (str): Name to give to the trained model.
+          save_dir (str): Directory to save the trained model weights.
+
+      Returns:
+          None.
+      """
     train_command = [
         "python",
         "yolov5/train.py",
