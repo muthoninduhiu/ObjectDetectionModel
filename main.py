@@ -1,8 +1,10 @@
 import os
 import cv2
+
+from custom_model import detect_custom_objects
+from pre_trained_model import resize_image, filter_results, count_objects, load_model, detect_objects
 from prediction_results import extract_predictions
 from visualization import visualize
-from pre_trained_model import load_model, resize_image, detect_objects, filter_results, count_objects
 
 
 def main():
@@ -19,13 +21,15 @@ def main():
         Returns:
         None
         """
-    # Define the classes to detect
+
+    # Set the directory to save the trained model weights
     classes = ['cell phone', 'laptop', 'satellite dish', 'USB stick', 'keyboard',
                'router', 'house keys', 'magnifying glass', 'server rack', 'mouse']
     model = load_model('yolov5x')
     # Define the image path
     folder_path = 'images/'
 
+    # images to test
     # define resizing image size
     target_size = (640, 640)
     # Loop through all the images in the folder

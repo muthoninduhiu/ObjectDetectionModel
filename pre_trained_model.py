@@ -1,16 +1,13 @@
-import os
 from pprint import pprint
-
 import cv2
 import torch
 
 
 def load_model(model_architecture):
     """
-    Resizes image to required target size
+    Loads Model
     Parameters:
-       model_architecture: takes the name of the architecture we use e.g 'yolov5s' but we use 'yolov5x'
-       # 'yolov5s' model has with 213 layers and 'yolov5x has 444 layers
+      model_architecture
     Returns:
       pre-trained model we use in evaluation mode
     """
@@ -19,8 +16,10 @@ def load_model(model_architecture):
     # 'yolov5x' is the model architecture to use, and 'pretrained=True'
     # means to download the pre-trained weights
     model = torch.hub.load('ultralytics/yolov5', model_architecture, pretrained=True)
-    # Set the model to evaluation mode, so it doesn't train while detecting objects in the imageoo
+
+    # put model in inference mode
     model.eval()
+    # Set the model to evaluation mode, so it doesn't train while detecting objects in the image
     labels = model.names
     pprint(labels)
     return model
