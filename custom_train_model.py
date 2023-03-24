@@ -1,5 +1,7 @@
 import subprocess
 
+from custom_model import detect_custom_objects
+
 
 def train_yolov5(data, cfg_path, pretrained_weights, num_epochs, batch_size, img_size, model_name, save_dir):
     # Define the YOLOv5 training command as a list of strings
@@ -50,7 +52,7 @@ if __name__ == "__main__":
     img_size = 640
 
     # Set the name of your custom model
-    model_name = "best.pt"
+    model_name = "best.pt-"
 
     # Set the directory to save the trained model weights
     save_dir = "models/custom_yolov5s"
